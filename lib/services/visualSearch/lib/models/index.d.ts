@@ -955,6 +955,22 @@ export interface Filters {
  * @class
  * Initializes a new instance of the KnowledgeRequest class.
  * @constructor
+ * A JSON object containing information about the request, such as filters for
+ * the resulting actions.
+ *
+ * @member {object} [filters] A key-value object consisting of filters that may
+ * be specified to limit the results returned by the API.
+ * @member {string} [filters.site] The URL of the site to return similar images
+ * and similar products from. (e.g., "www.bing.com", "bing.com").
+ */
+export interface KnowledgeRequest {
+  readonly filters?: Filters;
+}
+
+/**
+ * @class
+ * Initializes a new instance of the VisualSearchRequest class.
+ * @constructor
  * A JSON object that contains information about the image to get insights of.
  * Specify this object only in a knowledgeRequest form data.
  *
@@ -994,12 +1010,15 @@ export interface Filters {
  * region to be cropped. The coordinate is a fractional value of the original
  * image's width and is measured from the left edge of the image. Specify the
  * coordinate as a value from 0.0 through 1.0.
- * @member {object} [filters] A key-value object consisting of filters that may
- * be specified to limit the results returned by the API.
- * @member {string} [filters.site] The URL of the site to return similar images
- * and similar products from. (e.g., "www.bing.com", "bing.com").
+ * @member {object} [knowledgeRequest] A JSON object containing information
+ * about the request, such as filters, or a description.
+ * @member {object} [knowledgeRequest.filters] A key-value object consisting of
+ * filters that may be specified to limit the results returned by the API.
+ * @member {string} [knowledgeRequest.filters.site] The URL of the site to
+ * return similar images and similar products from. (e.g., "www.bing.com",
+ * "bing.com").
  */
-export interface KnowledgeRequest {
+export interface VisualSearchRequest {
   readonly imageInfo?: ImageInfo;
-  readonly filters?: Filters;
+  readonly knowledgeRequest?: KnowledgeRequest;
 }
